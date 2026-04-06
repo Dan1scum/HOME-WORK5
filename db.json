@@ -1,0 +1,336 @@
+[
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2025-07-06T15:57:30.431Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "1",
+      "object_repr": "�������",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2025-07-06T15:59:59.292Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "1",
+      "object_repr": "Ava Gold",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2025-07-06T16:00:38.464Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "2",
+      "object_repr": "Ava Citron",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2025-07-06T17:49:36.646Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "1",
+      "object_repr": "Review for Ava Gold",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+      "action_time": "2025-07-11T10:18:09.995Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "2",
+      "object_repr": "Review for Ava Citron - 4 stars",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+      "action_time": "2025-07-11T10:30:54.959Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "2",
+      "object_repr": "����������",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+      "action_time": "2025-07-11T10:30:59.428Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "3",
+      "object_repr": "Bom Bim",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+      "action_time": "2025-07-11T10:31:35.081Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "4",
+      "object_repr": "�����",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+      "action_time": "2025-07-11T10:32:07.386Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "3",
+      "object_repr": "Review for Bom Bim - 5 stars",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+      "action_time": "2025-07-11T10:32:30.497Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "4",
+      "object_repr": "Review for ����� - 4 stars",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+      "action_time": "2025-07-11T10:50:11.960Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "1",
+      "object_repr": "Review for Ava Gold - 6 stars",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Stars\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+      "action_time": "2025-07-11T10:50:25.704Z",
+      "user": 1,
+      "content_type": 9,
+      "object_id": "1",
+      "object_repr": "Review for Ava Gold - 5 stars",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Stars\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+      "action_time": "2025-07-15T11:39:20.049Z",
+      "user": 1,
+      "content_type": 7,
+      "object_id": "3",
+      "object_repr": "��������",
+      "action_flag": 3,
+      "change_message": ""
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+      "action_time": "2025-07-22T16:04:48.764Z",
+      "user": 1,
+      "content_type": 11,
+      "object_id": "1",
+      "object_repr": "164dc854653fa1681378529a55ea91a211935541",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$7ZObw3FxIshZ1jPoiOcW10$yI2zz8aeVQ7DNnKqno7EdlYML2Sf3Xvhh7z/FbKOueM=",
+      "last_login": "2025-07-22T16:03:56.060Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-07-06T15:48:23.947Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "9ks5o1sls3ups83sd5xu0vn2nyqnfsak",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQBe_iGln-m6Wk5wzWer3gALKlOKkQd4dIKaB9M_NeIuG61LQOntNUxElocfjdMtKD2wbKHdutS-ptmacsN0XudMhLL_w87-7fQcVRv7VT6C1ThmJMYR_h6lXU4LKNFBUab7NDRS4GLo5AW4AcgjKOjghaoXh_ANS1Nzk:1uYRjE:a-196P8AeYA-aBZDcuOt-HHctcysP1dh1Jp1XkrkE_w",
+      "expire_date": "2025-07-20T15:56:32.485Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "ni8o1r55uh0i5lrz8fhqd7qx0mcdumsu",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQBe_iGln-m6Wk5wzWer3gALKlOKkQd4dIKaB9M_NeIuG61LQOntNUxElocfjdMtKD2wbKHdutS-ptmacsN0XudMhLL_w87-7fQcVRv7VT6C1ThmJMYR_h6lXU4LKNFBUab7NDRS4GLo5AW4AcgjKOjghaoXh_ANS1Nzk:1ueFTA:7lJgEO8dds4RtytN1OV76z6en3IEIGFQxuoXuvQDEOM",
+      "expire_date": "2025-08-05T16:03:56.064Z"
+    }
+  },
+  {
+    "model": "product.category",
+    "pk": 1,
+    "fields": {
+      "name": "�������"
+    }
+  },
+  {
+    "model": "product.category",
+    "pk": 2,
+    "fields": {
+      "name": "����������"
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 1,
+    "fields": {
+      "title": "Ava Granat",
+      "description": "�� ������ �������",
+      "price": "80.00",
+      "category": 1
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 2,
+    "fields": {
+      "title": "Ava Citron",
+      "description": "",
+      "price": "80.00",
+      "category": 1
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 3,
+    "fields": {
+      "title": "Bom Bim",
+      "description": "",
+      "price": "25.00",
+      "category": 2
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 4,
+    "fields": {
+      "title": "�����",
+      "description": "�� ������ ������� ��������",
+      "price": "50.00",
+      "category": 2
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 5,
+    "fields": {
+      "title": "Ava Gold",
+      "description": "",
+      "price": "80.00",
+      "category": 1
+    }
+  },
+  {
+    "model": "product.product",
+    "pk": 6,
+    "fields": {
+      "title": "Ava Dushes",
+      "description": "������� �� ������ �����",
+      "price": "80.00",
+      "category": 1
+    }
+  },
+  {
+    "model": "product.review",
+    "pk": 1,
+    "fields": {
+      "text": "�������, ����������",
+      "product": 1,
+      "stars": 5
+    }
+  },
+  {
+    "model": "product.review",
+    "pk": 2,
+    "fields": {
+      "text": "������� ���� �����",
+      "product": 2,
+      "stars": 4
+    }
+  },
+  {
+    "model": "product.review",
+    "pk": 3,
+    "fields": {
+      "text": "�������, ��������",
+      "product": 3,
+      "stars": 5
+    }
+  },
+  {
+    "model": "product.review",
+    "pk": 4,
+    "fields": {
+      "text": "��������",
+      "product": 4,
+      "stars": 4
+    }
+  },
+  {
+    "model": "product.review",
+    "pk": 5,
+    "fields": {
+      "text": "��� ����",
+      "product": 5,
+      "stars": 3
+    }
+  }]
