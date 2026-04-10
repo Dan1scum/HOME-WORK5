@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from django.contrib.auth import get_user_model
-from .models import ConfirmationCode
 
 User = get_user_model()
 
@@ -35,12 +34,12 @@ class ConfirmUserSerializer(serializers.Serializer):
         except User.DoesNotExist:
             raise serializers.ValidationError("Пользователь не найден")
 
-        try:
-            confirmation = ConfirmationCode.objects.get(user=user)
-        except ConfirmationCode.DoesNotExist:
-            raise serializers.ValidationError("Код подтверждения не найден")
-
-        if confirmation.code != code:
+        # Check code in Redis
+        import redis
+        from django.conf import settings
+        r = redis.Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB)
+        stored_code = r.get(f'confirmation_code:{user.email}')
+        if not stored_code or stored_code.decode() != code:
             raise serializers.ValidationError("Неверный код")
 
         data['user'] = user
@@ -50,5 +49,9 @@ class ConfirmUserSerializer(serializers.Serializer):
         user = self.validated_data['user']
         user.is_active = True
         user.save()
-        user.confirmation_code.delete()  # удаляем код
+        # Delete code from Redis
+        import redis
+        from django.conf import settings
+        r = redis.Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB)
+        r.delete(f'confirmation_code:{user.email}')
         return user

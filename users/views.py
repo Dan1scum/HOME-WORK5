@@ -4,7 +4,6 @@ from rest_framework import status
 from django.contrib.auth.models import User
 from .serializers import UserCreateSerializer, UserAuthSerializer, ConfirmUserSerializer
 from django.contrib.auth import authenticate
-from rest_framework.authtoken.models import Token
 from .models import ConfirmationCode
 from rest_framework.views import APIView
 import random
@@ -13,6 +12,9 @@ import requests
 import os
 from django.shortcuts import redirect
 from django.utils import timezone
+from rest_framework_simplejwt.tokens import RefreshToken
+import redis
+from django.conf import settings
 
 User = get_user_model()
 
@@ -27,8 +29,16 @@ class AuthorizationAPIView(APIView):
 
         user = authenticate(email=email, password=password)
         if user:
-            token, _ = Token.objects.get_or_create(user=user)
-            return Response({'key': token.key})
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+                'user': {
+                    'email': user.email,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name
+                }
+            })
         return Response({'error': 'user credentials are wrong!'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
@@ -43,7 +53,9 @@ class RegistrationAPIView(APIView):
         user = User.objects.create_user(email=email, password=password, is_active=False)
 
         code = ''.join([str(random.randint(0, 9)) for _ in range(6)])
-        ConfirmationCode.objects.create(user=user, code=code)
+        # Save code in Redis with TTL 5 minutes
+        r = redis.Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB)
+        r.setex(f'confirmation_code:{email}', 300, code)
 
         print(f'Код подтверждения для пользователя {email}: {code}')  # Для отладки
 
@@ -127,8 +139,16 @@ class GoogleOAuthCallbackAPIView(APIView):
         user.last_login = timezone.now()
         user.save()
 
-        # Create token
-        token, _ = Token.objects.get_or_create(user=user)
+        # Create JWT tokens
+        refresh = RefreshToken.for_user(user)
 
         # Redirect to frontend or return token
-        return Response({'key': token.key, 'user': {'email': user.email, 'first_name': user.first_name, 'last_name': user.last_name}})
+        return Response({
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+            'user': {
+                'email': user.email,
+                'first_name': user.first_name,
+                'last_name': user.last_name
+            }
+        })
