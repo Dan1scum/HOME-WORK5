@@ -4,7 +4,6 @@ from rest_framework import status
 from django.contrib.auth.models import User
 from .serializers import UserCreateSerializer, UserAuthSerializer, ConfirmUserSerializer
 from django.contrib.auth import authenticate
-from .models import ConfirmationCode
 from rest_framework.views import APIView
 import random
 from django.contrib.auth import get_user_model
@@ -58,6 +57,11 @@ class RegistrationAPIView(APIView):
         r.setex(f'confirmation_code:{email}', 300, code)
 
         print(f'Код подтверждения для пользователя {email}: {code}')  # Для отладки
+        
+        # Send welcome email asynchronously using Celery .delay()
+        from users.tasks import send_welcome_email, send_confirmation_code
+        send_welcome_email.delay(email, user.first_name or 'User')
+        send_confirmation_code.delay(email, code)
 
         return Response(
             {'user_id': user.id, 'detail': 'Пользователь создан. Проверьте код подтверждения.'},

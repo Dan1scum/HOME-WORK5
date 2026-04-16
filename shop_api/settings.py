@@ -31,7 +31,13 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
+# Add testserver for Django test client
+if 'testserver' not in ALLOWED_HOSTS and '*' not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append('testserver')
 
+
+# Default auto field for models
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Application definition
 
@@ -45,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_celery_beat',
     'product',
     'users',
 ]
@@ -81,11 +88,29 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'shop_api.wsgi.application'
+ROOT_URLCONF = 'shop_api.urls'
 
 # Redis settings
 REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
 REDIS_PORT = int(os.getenv('REDIS_PORT', 6379))
 REDIS_DB = int(os.getenv('REDIS_DB', 0))
+
+# Celery settings
+CELERY_BROKER_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}'
+CELERY_RESULT_BACKEND = f'redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+
+# Email settings for SMTP
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@shop.com')
 
 
 # Database
@@ -94,7 +119,7 @@ REDIS_DB = int(os.getenv('REDIS_DB', 0))
 DATABASES = {
     'default': {
         'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.sqlite3'),
-        'NAME': os.getenv('DB_NAME', BASE_DIR / 'db.sqlite3'),
+        'NAME': os.getenv('DB_NAME', str(BASE_DIR / 'db.sqlite3')),
         'USER': os.getenv('DB_USER', ''),
         'PASSWORD': os.getenv('DB_PASSWORD', ''),
         'HOST': os.getenv('DB_HOST', ''),
